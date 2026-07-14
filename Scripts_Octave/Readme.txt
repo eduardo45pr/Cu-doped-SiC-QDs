@@ -2,4 +2,4 @@
 
 ## Open the terminal and write this syntaxis:
 
-octave --persist graficar_energias.m
+octave --persist energy_grapher.m
