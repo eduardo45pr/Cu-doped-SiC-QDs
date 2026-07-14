@@ -1,0 +1,237 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8
+
+% This is a simple template for a XeLaTeX document using the "article" class,
+% with the fontspec package to easily select fonts.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage{fontspec} % Font selection for XeLaTeX; see fontspec.pdf for documentation
+\defaultfontfeatures{Mapping=tex-text} % to support TeX conventions like ``---''
+\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\usepackage{float}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\setmainfont{Times New Roman}
+%\setsansfont{Deja Vu Sans}
+%\setmonofont{Deja Vu Mono}
+
+% other LaTeX packages.....
+\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+%\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+\title{Site-Dependent Spin-Polarized Electronic, Optical, and Stability Properties of Cu-Doped Hydrogenated Planar SiC Quantum Dots}
+
+\author{J.L.Cuevas$^{1}$, Eduardo P. Estevez$^{2}$, M. Ojeda-Martínez$^{3}$, and A.Trejo$^{1}$}
+
+\date{
+	\small
+	$^{1}$Instituto Politécnico Nacional, ESIME Culhuacán, Av. Santa Ana 1000, 04440, Ciudad de México, Mexico\\
+	$^{2}$Escuela de Ciencias Físicas y Nanotecnología, Universidad de Investigación de Tecnología Experimental Yachay, Hacienda San José S/N, 100119 Urcuquí, Ecuador\\
+	$^{3}$Universidad de Guadalajara, Centro Universitario de los Valles, Depto. de Ciencias Naturales y Exactas, Ameca Jalisco 46600 M\'exico.\\
+	\textit{Corresponding author:} jcuevasf@gmail.com
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+\maketitle
+\begin{abstract}
+		
+	The electronic, optical, and stability properties of hydrogen-passivated planar SiC quantum dots doped with a single Cu atom were investigated by means of density functional theory within the SIESTA formalism. A fixed quantum dot model with a diameter of 15.3~\AA\ was considered in order to isolate the effect of the Cu substitutional position. Three nonequivalent substitutional sites were analyzed for Cu replacing a carbon atom ($\mathrm{Cu_C}$) and for Cu replacing a silicon atom ($\mathrm{Cu_{Si}}$). The calculated spin-polarized electronic energy levels reveal that the Cu dopant induces site-dependent modifications in the frontier states and generates clear differences between the spin-up and spin-down channels. The HOMO--LUMO analysis shows that the energy gap strongly depends on both the substituted atom and the Cu location, with more pronounced variations for the $\mathrm{Cu_C}$ configurations. Cohesive energy calculations indicate that all doped systems remain energetically stable, although their relative stability depends on the substitutional site. The optical response, evaluated through the real and imaginary parts of the dielectric function, exhibits spin-dependent features and noticeable shifts in peak intensity and spectral shape as the dopant position changes. In particular, Cu substitution at carbon sites produces stronger variations in the dielectric response than Cu substitution at silicon sites. These results demonstrate that the substitutional position of Cu provides an effective route to tune the electronic and optical properties of planar SiC quantum dots, highlighting their potential for spin-dependent nanoscale optoelectronic applications.
+\end{abstract}
+
+\section{Introduction}
+
+Among wide-bandgap semiconductors, silicon carbide (SiC) has emerged as a highly promising material due to its excellent thermal stability, chemical inertness, high breakdown electric field, and favorable electronic properties. These features have made SiC attractive not only for power electronics and harsh-environment devices, but also for photonics, optoelectronics, sensing, and quantum technologies. However, despite its remarkable advantages, bulk SiC is an indirect-bandgap semiconductor, which limits the probability of radiative recombination and reduces its optical efficiency in its conventional form \cite{Ivanov1992,Yuanyuan_Li_2021,Fraga2025,Castelletto2020}.
+
+Semiconductor nanostructures have attracted considerable attention because quantum confinement induces discrete energy levels and strongly size-dependent electronic and optical properties \cite{Zhang_Zhenkui_2021,de_Vries,Beke2012, Azar2025}. In particular, quantum dots (QDs) exhibit tunable absorption and emission characteristics as a function of size, behaving as artificial atoms with confined carriers \cite{Zhang_Zhenkui_2021,Yuanyuan_Li_2021}. As the size of the system decreases, the spacing between electronic states increases, which modifies the optical response and enables control of the band structure at the nanoscale \cite{de_Vries,Beke2012}.
+One effective strategy to overcome these limitations is to reduce the dimensionality of the material. At the nanoscale, SiC quantum dots combine the intrinsic robustness of the host material with the effects of quantum confinement, giving rise to modified electronic structures and tunable optical properties \cite{Zhang_Zhenkui_2021}. In such systems, the role of the surface becomes especially important, since unpassivated dangling bonds may introduce states within the gap and strongly affect the optical response \cite{Beke2012,Ivanov1992}. For this reason, surface passivation, particularly with hydrogen, is commonly employed to suppress surface-related states and stabilize the electronic structure of the quantum dots.
+
+In addition to size reduction and surface engineering, chemical doping has proven to be an efficient route for tailoring the properties of SiC-based materials. Previous studies have shown that substitutional doping in SiC can preserve structural stability while modifying the charge distribution, bandgap, and magnetic behavior of the host lattice. In particular, the introduction of foreign atoms can act as donor or acceptor centers depending on their chemical nature and local bonding environment, providing an additional mechanism to control the electronic structure. This tunability becomes even more relevant in low-dimensional systems, where the reduced size enhances the effect of local perturbations\cite{CUEVAS2026114706,CUEVAS2026114484}.
+
+Within this context, doping with transition metals is especially attractive. Transition-metal atoms possess partially filled $d$ orbitals that can strongly hybridize with the host states, generating localized electronic levels, promoting charge transfer, narrowing the bandgap, and modifying optical absorption. In SiC quantum dots, recent theoretical studies have shown that transition-metal incorporation can preserve the overall stability of the structure while producing significant changes in HOMO--LUMO distributions, electronic coupling, and optical absorption, including red shifts toward the visible and near-infrared regions \cite{Castelletto2020}. These effects make transition-metal-doped SiC QDs promising candidates for optoelectronic, photocatalytic, and spin-related applications.
+From a physical point of view, the use of transition-metal dopants is also justified by their ability to introduce spin-polarized states and defect-like levels inside the gap. In SiC-based systems, defect-related and impurity-related states have been widely recognized as key factors governing optical emission and spin-dependent phenomena \cite{Castelletto2020,Masashi_2011}. Therefore, incorporating a transition metal into a SiC quantum dot is a rational strategy to simultaneously tune the electronic structure, optical transitions, and possible magnetic features of the system. Among the different transition metals, copper is particularly interesting because it can induce substantial local perturbations in bonding and charge redistribution while remaining experimentally and technologically relevant for defect and impurity engineering in semiconducting materials.
+
+\textcolor{red}{Although transition-metal doping in SiC-based nanostructures has been explored in previous studies, the role of the precise substitutional position of Cu in hydrogen-passivated planar SiC quantum dots remains insufficiently understood. In particular, a direct comparison between Cu substitution at carbon or silicon sites, including spin-resolved electronic and optical responses, is still lacking \cite{FluorescentSiCNPs, EngineeringSiCQDs}.
+\\
+For this work we consider that Cu is a particularly relevant dopant because its partially filled 3d states can interact with the electronic states of the SiC quantum dot, potentially introducing localized levels near the frontier orbitals. Moreover, Cu impurities are experimentally relevant in semiconductor defect engineering and may provide a route to tune optical and spin-dependent properties without requiring high dopant concentrations \cite{Castelletto2020}.
+}
+\\
+
+Motivated by these considerations, in this work we investigate the effect of Cu doping on hydrogen-passivated SiC quantum dots. By combining the effects of quantum confinement, surface passivation, and transition-metal incorporation, we aim to elucidate how Cu modifies the electronic structure and optical response of SiC-based nanostructures. Understanding these effects is essential for the rational design of tunable SiC quantum dots for future optoelectronic and spin-dependent applications.
+
+\section{Model and Calculation Scheme}
+In this work, we investigate the influence of the Cu dopant position on the electronic and optical properties of hydrogen-passivated planar SiC quantum dots (SiC-QDs). Hydrogen-passivated planar SiC quantum dots have previously been shown to exhibit well-defined electronic and
+optical properties arising from quantum confinement, making them suitable model systems for first-principles investigations of substitutional doping \cite{Rupali}. A quantum dot with a diameter of 15.3~\AA\ was selected as the representative model in order to isolate the effect of the substitutional site.
+ Three nonequivalent substitutional positions, denoted as P$_{1}$, P$_{2}$, and P$_{3}$, were considered for Cu replacing either a carbon atom (Cu$_\mathrm{C}$) or a silicon atom (Cu$_\mathrm{Si}$), as illustrated in Figure 1. Position P$_{1}$ corresponds to the central region of the quantum dot, P$_{2}$ represents an intermediate site, and P$_{3}$ is located close to the edge of the structure. This notation is adopted throughout the manuscript to facilitate the comparison among the different substitutional configurations.
+Only one substitutional Cu atom was introduced in each model to avoid Cu--Cu interactions and to isolate the intrinsic effect of the dopant position on the structural, electronic, magnetic, and optical properties. The size of the quantum dot was kept constant in all calculations, allowing the observed variations to be attributed exclusively to the substitutional position rather than to quantum-confinement effects.  A vacuum region exceeding 10~\AA\ was included in all directions to eliminate spurious interactions between periodic images~\cite{PhysRevB.73.205119}.
+All structures were fully optimized within the framework of density functional theory (DFT) until the residual forces on each atom were below 0.005 eV/\AA, ensuring convergence to stable local minima of the potential energy surface.
+Electronic structure calculations were carried out using the \textsc{SIESTA} code \cite{Jose_M_Soler_2002}. The Kohn--Sham wave functions were expanded using a double-$\zeta$ basis set with polarization functions. Exchange--correlation effects were described within the generalized gradient approximation (GGA) using the revised Perdew--Burke--Ernzerhof (RPBE) functional~\cite{PhysRevB.59.7413}. A real-space grid cutoff of 300 Ry was employed, and Brillouin zone integrations were performed using a $1 \times 1 \times 1$ Monkhorst--Pack $k$-point mesh \cite{PhysRevB.13.5188}.
+Spin--orbit coupling (SOC) was not included in the present calculations. Because of the moderate atomic number of Cu and the predominance of Si--C states near the band edges, the SOC effects are expected to produce only minor splittings and are not anticipated to significantly alter the main trends reported here. As part of the DFT calculations, the spin degree of freedom was included self-consistently in the DFT calculations, allowing the magnetic state of each system to emerge naturally during the electronic minimization procedure.
+The cohesive energy ($E_{\mathrm{coh}}$) was evaluated using elemental chemical potentials as reference states, according to \cite{Amogh_Vig}
+
+\begin{equation}
+	E_{\mathrm{coh}} = \frac{E_0 - \sum_{i = C,H,Si,Cu} n_i \mu_i}{n_T},
+\end{equation}
+
+where $E_0$ is the total energy of the quantum dot, $n_i$ is the number of atoms of type $i$, $\mu_i$ is the corresponding elemental chemical potential, and $n_T$ is the total number of atoms in the system.
+
+The chemical potentials of silicon ($\mu_{\mathrm{Si}}$), carbon ($\mu_{\mathrm{C}}$), and copper ($\mu_{\mathrm{Cu}}$) were taken from the total energies per atom of their corresponding bulk stable phases, while the chemical potential of hydrogen ($\mu_{\mathrm{H}}$) was obtained from the total energy of the H$_2$ molecule. These reference states were used to estimate the average binding strength of the atoms within the doped quantum dots.
+
+The HOMO--LUMO gap ($E_{\mathrm{gap}}$) was determined as:
+
+\begin{equation}
+	E_{\mathrm{gap}} = E_{\mathrm{LUMO}} - E_{\mathrm{HOMO}}
+\end{equation}
+
+where $E_{\mathrm{HOMO}}$ and $E_{\mathrm{LUMO}}$ correspond to the highest occupied and lowest unoccupied Kohn--Sham energy levels, respectively.
+The optical properties were derived from the complex dielectric function under the assumption of isotropic polarization. A Gaussian broadening of 0.01~Ry was applied to account for lifetime effects and to ensure smooth spectra \cite{PhysRevB.73.045112}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Figuras/Figure1.jpg}
+	\caption{Atomic structures of hydrogen-passivated planar SiC quantum dots containing a single substitutional Cu atom. Panels (a)--(c) correspond to the Cu$_\mathrm{C}$ configurations, where Cu replaces a carbon atom at positions P$_{1}$ (central site), P$_{2}$ (intermediate site), and P$_{3}$ (edge site), respectively. Panels (d)--(f) show the analogous Cu$_\mathrm{Si}$ configurations, where Cu substitutes a silicon atom at the same positions. Copper, silicon, carbon, and hydrogen atoms are represented by red, yellow, gray, and white spheres, respectively.}
+	\label{fig:SiC_QDs}
+\end{figure}
+
+\section{Results and Discussion}
+
+Figure 2 presents the spin-polarized electronic energy levels of hydrogen-passivated planar SiC quantum dots doped with a single Cu atom. Panels (a) and (b) correspond to the $\mathrm{Cu_C}$ configuration for the spin-up and spin-down channels, respectively, while panels (c) and (d) show the corresponding results for the $\mathrm{Cu_{Si}}$ configuration. In each panel, the labels 1, 2, and 3 denote the three nonequivalent P$_{1},$P$_{2}$,P$_{3}$ substitutional positions considered for the Cu atom. The incorporation of Cu introduces localized electronic states close to the Fermi level, producing a site-dependent modification of the frontier energy levels. Similar behavior has recently been reported for transition-metal-doped SiC quantum dots, where the hybridization between the transition-metal $3d$ orbitals and the SiC framework governs the frontier electronic states and the magnitude of the HOMO--LUMO gap~\cite{Teleb2026}.
+
+\textcolor{red}{For the $\mathrm{Cu_C}$ systems, a clear asymmetry between the spin-up and spin-down energy distributions is observed, particularly for the states located near the Fermi level. This behavior indicates that Cu substitution at a carbon site induces spin-dependent modifications in the electronic structure. Such changes can be associated with the local perturbation of the Si--C bonding network produced by the replacement of a carbon atom with Cu \cite{FluorescentSiCNPs, Beke2012Bioimaging}. In contrast, the $\mathrm{Cu_{Si}}$ configurations also exhibit spin splitting, but with a different distribution of occupied and unoccupied states, reflecting the distinct local environment created when Cu replaces a silicon atom.}
+\\
+\textcolor{red}{Overall, these results suggest that both the substitutional site and the spin channel strongly influence the electronic energy spectrum of planar SiC quantum dots. This behavior confirms the site-dependent nature of Cu-induced electronic states and demonstrates the importance of selective dopant positioning in tuning the electronic response.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{Figuras/Figure2.jpg}
+\caption{Spin-polarized electronic energy levels of hydrogen-passivated planar SiC quantum dots doped with Cu. Panels (a) and (b) correspond to the $\mathrm{Cu_{C}}$ configuration (Cu substituting a carbon atom) for the spin-up and spin-down channels, respectively. Panels (c) and (d) show the corresponding energy levels for the $\mathrm{Cu_{Si}}$ configuration (Cu substituting a silicon atom). The figure illustrates the spin splitting and the modification of the frontier electronic states induced by the Cu dopant depending on the substitutional site.}
+\label{fig:SiC_QDs}
+\end{figure}
+
+Figure 3 shows the spin-resolved frontier energy levels of the hydrogen-passivated planar SiC quantum dots doped with a single Cu atom. The highest occupied molecular orbital (HOMO) and the lowest unoccupied molecular orbital (LUMO) are presented for the two substitutional configurations: Cu replacing a carbon atom ($\mathrm{Cu_{C}}$) and Cu replacing a silicon atom ($\mathrm{Cu_{Si}}$). The results are separated into spin-up and spin-down channels to analyze the spin-dependent electronic structure.
+For the $\mathrm{Cu_{C}}$ configuration, panels (a) and (b) display the HOMO and LUMO energy levels for the spin-up and spin-down channels, respectively. A clear difference between both spin channels is observed, indicating spin polarization induced by the Cu dopant. \textcolor{red}{The relative position of the HOMO and LUMO levels further suggests that the impurity significantly modifies the electronic gap and the distribution of states near the frontier region.}
+For the $\mathrm{Cu_{Si}}$ configuration, panels (c) and (d) present the corresponding HOMO and LUMO energy levels for the spin-up and spin-down channels. Compared to the $\mathrm{Cu_{C}}$ case, a different alignment of the frontier levels is observed, reflecting the influence of the substitutional site on the electronic structure. \textcolor{red}{This behavior indicates that both the spin channel and the specific position occupied by the Cu atom play an important role in determining the electronic properties of the system.}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{Figuras/Figure3}
+	\caption{Spin-resolved HOMO and LUMO energy levels of hydrogen-passivated planar SiC quantum dots doped with Cu. Panels (a) and (b) correspond to the $\mathrm{Cu_{C}}$ configuration (Cu substituting a carbon atom) for the spin-up and spin-down channels, respectively. Panels (c) and (d) show the corresponding HOMO and LUMO energy levels for the $\mathrm{Cu_{Si}}$ configuration (Cu substituting a silicon atom). The figure highlights the spin-dependent shifts of the frontier energy levels induced by the Cu dopant.}
+	\label{fig:homo_lumo_levels}
+\end{figure}
+
+
+
+Tables 1 and 2 summarize the average Mulliken atomic charges together with the total magnetic moments for the Cu-doped planar SiC quantum dots. The charge distribution strongly depends on whether Cu substitutes a carbon or a silicon atom, reflecting the different local bonding environments created by each substitutional configuration. 
+This electron-accepting behavior is consistent with previous theoretical studies on transition-metal-doped SiC quantum dots, where Cu was also found to accumulate electronic charge from the SiC host, leading to localized dopant states and enhanced host–dopant hybridization \cite{Masashi_2011}.
+
+For the Cu$_\mathrm{C}$ systems (Table 1), the Cu atom acquires a negative Mulliken charge in all three configurations, ranging from $-0.074$ to $-0.152~e$. This behavior indicates that Cu accepts electronic charge from the surrounding SiC framework, while the neighboring carbon and silicon atoms remain positively charged. The magnitude of the Cu charge varies with the substitutional position, revealing that the local coordination influences the degree of charge transfer. In contrast, the hydrogen atoms exhibit nearly constant negative charges (approximately $-0.165~e$), indicating that the electronic structure of the passivated edges is only weakly affected by the Cu position.
+
+For the Cu$_\mathrm{Si}$ systems (Table 2), a more complex behavior is observed. The Cu atom exhibits positive Mulliken charges for positions~1 and~3 ($+0.208$ and $+0.080~e$, respectively), whereas it becomes negatively charged at position~2 ($-0.153~e$). This change in sign demonstrates that the direction and magnitude of the charge transfer strongly depend on the local atomic environment when Cu substitutes a silicon atom. Meanwhile, the average charges of the Si, C, and H atoms remain nearly unchanged among the three configurations, suggesting that the charge redistribution is mainly localized around the Cu impurity rather than extending throughout the entire quantum dot.
+
+The calculated magnetic moments also exhibit a clear dependence on the substitutional site. The Cu$_\mathrm{C}$ configuration is nonmagnetic for position~1, whereas positions~2 and~3 display a total magnetic moment of $1~\mu_\mathrm{B}$. In contrast, the Cu$_\mathrm{Si}$ systems exhibit larger magnetic moments of $3~\mu_\mathrm{B}$ for positions~1 and~3, while position~2 retains a magnetic moment of $1~\mu_\mathrm{B}$. These results indicate that the local coordination of the Cu atom governs not only the charge transfer but also the spin polarization of the electronic structure. The observed charge redistribution is consistent with the spin-dependent electronic properties discussed above. Variations in the amount of charge transferred to or from the Cu atom modify the hybridization between the Cu $3d$ orbitals and the Si--C network, leading to the site-dependent electronic energy levels, HOMO--LUMO gaps, magnetic moments, and optical response observed throughout this work.
+
+\begin{table}[H]
+	\centering
+	\caption{Average Mulliken atomic charges and total magnetic moments for flat SiC quantum dots with Cu substituting a C atom.}
+	\label{tab:mulliken_CuC}
+	\begin{tabular}{cccccc}
+		\hline
+		Configuration & C (e) & Si (e) & Cu (e) & H (e) & $M_{\mathrm{tot}}$ ($\mu_B$) \\
+		\hline
+		Cu$_{\mathrm{C}}$ position 1 & +0.330 & +0.133 & -0.141 & -0.167 & 0 \\
+		Cu$_{\mathrm{C}}$ position 2 & +0.329 & +0.135 & -0.152 & -0.166 & 1 \\
+		Cu$_{\mathrm{C}}$ position 3 & +0.319 & +0.132 & -0.074 & -0.164 & 1 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Average Mulliken atomic charges and total magnetic moments for flat SiC quantum dots with Cu substituting a Si atom.}
+	\label{tab:mulliken_CuSi}
+	\begin{tabular}{cccccc}
+		\hline
+		Configuration & C (e) & Si (e) & Cu (e) & H (e) & $M_{\mathrm{tot}}$ ($\mu_B$) \\
+		\hline
+		Cu$_{\mathrm{Si}}$ position 1 & +0.319 & +0.123 & +0.208 & -0.165 & 3 \\
+		Cu$_{\mathrm{Si}}$ position 2 & +0.329 & +0.135 & -0.153 & -0.166 & 1 \\
+		Cu$_{\mathrm{Si}}$ position 3 & +0.323 & +0.124 & +0.080 & -0.164 & 3 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+
+Figure 4 presents the cohesive energy of the hydrogen-passivated planar SiC quantum dots doped with a single Cu atom for the two substitutional configurations: Cu replacing a carbon atom ($\mathrm{Cu_{C}}$) and Cu replacing a silicon atom ($\mathrm{Cu_{Si}}$). The cohesive energy is used as a measure of the structural stability of the system upon doping.
+\textcolor{red}{For the $\mathrm{Cu_C}$ configuration, the calculated cohesive energy indicates that the structure remains stable after Cu incorporation, although slight variations are observed depending on the substitutional site. These variations can be associated with local structural distortions and changes in the bonding environment produced when Cu replaces a carbon atom. In the case of the $\mathrm{Cu_{Si}}$ configuration, the cohesive energy values follow a different trend with respect to the $\mathrm{Cu_C}$ system, reflecting the influence of the substituted atom on the overall stability. The replacement of silicon by copper leads to a distinct redistribution of bonding interactions, which modifies the total binding energy of the structure. Therefore, the comparison between both configurations indicates that the stability of the doped system is strongly influenced by the local atomic environment around the Cu dopant.}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Figuras/Figure4.jpg}
+\caption{Cohesive energy of hydrogen-passivated planar SiC quantum dots doped with Cu for the different substitutional configurations considered in this work. The results provide information about the relative stability of the doped systems and reveal the effect of the Cu substitution site on the structural stability of the planar SiC quantum dots.}
+\label{fig:SiC_QDs}
+\end{figure}
+
+Figure 5 shows the spin-resolved dielectric function of hydrogen-passivated planar SiC quantum dots doped with Cu in the $\mathrm{Cu_{C}}$ configuration for different ring positions (P$_{1}$, P$_{2}$, and P$_{3}$). The real part ($\varepsilon_1$) is presented in the top panels, while the imaginary part ($\varepsilon_2$) is shown in the bottom panels. The left column corresponds to the spin-up channel, and the right column to the spin-down channel. The observed modification of the optical spectra originates from the Cu-induced electronic states introduced within the energy gap, which enable additional low-energy electronic transitions. A similar correlation between transition-metal doping, band-gap modulation, and enhanced optical response has recently been reported for SiC quantum dots by Teleb \textit{et al.}~\cite{Teleb2026}.
+
+The $\varepsilon_1$ spectra exhibit a similar overall behavior for the three configurations, with noticeable variations in the peak intensity and dispersion, particularly in the energy range between 5 and 8 eV. These differences indicate that the position of the Cu atom influences the polarization response of the system. \textcolor{red}{ Since $\varepsilon_1$ is associated with the dispersive component of the dielectric response, the observed changes suggest that Cu substitution at different carbon sites modifies the electronic polarizability of the quantum dot.}\\
+
+The $\varepsilon_2$ spectra reveal distinct peaks associated with interband electronic transitions. The intensity and position of these peaks vary depending on the Cu location (P$_{1}$--P$_{3}$), indicating that the substitutional position affects the optical transition energies. Additionally, differences between the spin-up and spin-down channels are observed, confirming the presence of spin-dependent optical transitions induced by the Cu dopant.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{Figuras/Figure5.jpg}
+\caption{Spin-resolved dielectric function of hydrogen-passivated planar SiC quantum dots doped with Cu in the $\mathrm{Cu_{C}}$ configuration. The top panels show the real part ($\varepsilon_1$), and the bottom panels show the imaginary part ($\varepsilon_2$). The left column corresponds to the spin-up channel, while the right column corresponds to the spin-down channel. Different curves represent Cu located at different positions (P$_{1}$, P$_{2}$, and P$_{3}$).}
+\label{fig:SiC_QDs}
+\end{figure}
+
+
+Figure 6 shows the spin-resolved dielectric function of hydrogen-passivated planar SiC quantum dots doped with Cu in the $\mathrm{Cu_{Si}}$ configuration for different ring positions (P$_{1}$, P$_{2}$, P$_{3}$). The real part ($\varepsilon_1$) is presented in the top panels, while the imaginary part ($\varepsilon_2$) is shown in the bottom panels. The left column corresponds to the spin-up channel, and the right column to the spin-down channel.
+
+The $\varepsilon_1$ spectra display a similar general trend for all configurations, with noticeable variations in peak intensity and spectral shape, particularly in the energy region between 5 and 8 eV. Compared to the $\mathrm{Cu_{C}}$ case, the differences among the ring positions are less pronounced, suggesting a more uniform polarization response when Cu substitutes a silicon atom.
+The $\varepsilon_2$ spectra exhibit well-defined peaks corresponding to interband electronic transitions. \textcolor{red}{The position and intensity of these peaks depend on the Cu location, although the variations are smaller than those observed for the $\mathrm{Cu_C}$ configuration. Differences between the spin-up and spin-down channels are still present, indicating that the optical transitions retain a spin-dependent character even when Cu substitutes a silicon atom.}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Figuras/Figure6.jpg}
+	\caption{Spin-resolved dielectric function of hydrogen-passivated planar SiC quantum dots doped with Cu in the $\mathrm{Cu_{Si}}$ configuration. The top panels show the real part ($\varepsilon_1$), and the bottom panels show the imaginary part ($\varepsilon_2$). The left column corresponds to the spin-up channel, while the right column corresponds to the spin-down channel. Different curves represent Cu located at different ring positions (P$_{1}$, P$_{2}$, and P$_{3}$).}
+	\label{fig:SiC_QDs}
+\end{figure}
+
+
+\section{Conclusions}
+
+
+\textcolor{red}{In this work, we investigated the effect of the substitutional position of a single Cu atom on the stability, electronic structure, and optical response of hydrogen-passivated planar SiC quantum dots by means of density functional theory. Six structural models were considered, corresponding to three nonequivalent Cu substitutions at carbon sites and three nonequivalent Cu substitutions at silicon sites.}
+
+The results show that Cu doping introduces clear spin-dependent modifications in the electronic structure. The spin-polarized energy levels reveal that both the substituted atom and the dopant position strongly influence the distribution of occupied and unoccupied states. This behavior is further reflected in the HOMO--LUMO gaps, which exhibit significant site dependence, particularly for the $\mathrm{Cu_C}$ configurations. In contrast, the $\mathrm{Cu_{Si}}$ systems display a more uniform electronic response.
+
+The cohesive energy analysis confirms that all studied configurations are energetically stable. However, the relative stability depends on the local atomic environment, showing that the substitutional site plays an important role in the binding characteristics of the doped quantum dots.
+
+The calculated dielectric function demonstrates that the optical response is also strongly affected by the Cu position. For the $\mathrm{Cu_C}$ systems, the real and imaginary parts of the dielectric function show more pronounced variations among the different ring positions, whereas the $\mathrm{Cu_{Si}}$ configurations exhibit a comparatively more homogeneous behavior. In both cases, differences between spin-up and spin-down channels confirm the presence of spin-dependent optical transitions.
+
+Overall, these results demonstrate that the position of a single Cu dopant provides an efficient mechanism to tune the stability, electronic structure, and optical response of planar SiC quantum dots. This site-dependent behavior makes Cu-doped SiC quantum dots promising candidates for future spintronic and optoelectronic nanodevices.
+
+\section*{Declaration of Competing Interest}
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Acknowledgment}
+
+This work was partially supported by the SECIHTI project grant CBF-2025-G1257 and the SIP-IPN grant 20253922.
+
+\bibliographystyle{unsrt}   % 
+\bibliography{Articulo}
+
+
+\end{document}

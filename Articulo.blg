@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Articulo.aux
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: unsrt.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Database file #1: Articulo.bib
+Repeated entry---line 797 of file Articulo.bib
+ : @article{CUEVAS2026114484
+ :                          ,
+I'm skipping whatever remains of this entry
+Name 1 in "Hendrik J.Monkhorst, and James D. Pack" has a comma at the end for entry PhysRevB.13.5188
+while executing---line 944 of file unsrt.bst
+You've used 22 entries,
+            1791 wiz_defined-function locations,
+            600 strings with 8140 characters,
+and the built_in function-call counts, 5489 in all, are:
+= -- 457
+> -- 313
+< -- 0
++ -- 112
+- -- 90
+* -- 441
+:= -- 930
+add.period$ -- 67
+call.type$ -- 22
+change.case$ -- 22
+chr.to.int$ -- 0
+cite$ -- 22
+duplicate$ -- 200
+empty$ -- 498
+format.name$ -- 90
+if$ -- 1163
+int.to.chr$ -- 0
+int.to.str$ -- 22
+missing$ -- 22
+newline$ -- 113
+num.names$ -- 22
+pop$ -- 32
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 70
+stack$ -- 0
+substring$ -- 443
+swap$ -- 22
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 49
+width$ -- 24
+write$ -- 242
+(There were 2 error messages)
