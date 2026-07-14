@@ -1,0 +1,343 @@
+SystemName         Cu@M0
+SystemLabel        Cu@M0
+
+NumberOfAtoms        126
+NumberOfSpecies      4
+
+%block ChemicalSpeciesLabel
+  1   1    H
+  2   6    C
+  3   14   Si
+  4   29   Cu
+%endblock ChemicalSpeciesLabel
+
+
+#-----------------------------
+# Basis + XC
+#-----------------------------
+PAO.BasisSize       DZP
+PAO.EnergyShift     0.02 eV
+
+XC.functional       GGA
+XC.authors          RPBE
+
+
+#-----------------------------
+# Cell
+#-----------------------------
+LatticeConstant     1.0 Ang
+
+%block LatticeVectors
+ 49.19200   0.00000   0.00000
+ 24.59600  42.60152   0.00000
+  0.00000   0.00000  15.62760
+%endblock LatticeVectors
+
+
+#-----------------------------
+# k-grid (QD aislado -> Gamma)
+#-----------------------------
+%block kgrid_Monkhorst_Pack
+  1  0  0  0.0
+  0  1  0  0.0
+  0  0  1  0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+#-----------------------------
+# SCF / DM
+#-----------------------------
+MeshCutoff          300 Ry
+SolutionMethod      diagon
+
+MaxSCFIterations    200
+DM.Tolerance        1.0e-5
+DM.MixingWeight     0.05
+DM.NumberPulay      5
+
+ElectronicTemperature  300 K
+
+
+#-----------------------------
+# Spin
+#-----------------------------
+SpinPolarized       true
+DM.InitSpin         1.0
+
+
+#-----------------------------
+# Outputs (cargas / WF / etc.)
+#-----------------------------
+WriteDenchar        true
+WriteEigenvalues    true
+
+WriteMullikenPop    1
+WriteHirshfeldPop   true
+WriteVoronoiPop     true
+
+WriteWaveFunctions  true
+%block WaveFuncKPoints
+  0.000  0.000  0.000  from 1 to 50
+%endblock WaveFuncKPoints
+WaveFuncKPointsScale  pi/a
+
+
+#-----------------------------
+# DOS / PDOS
+#-----------------------------
+OutputDensityOfStates       true
+DOS.EnergyMin              -10 eV
+DOS.EnergyMax               10 eV
+DOS.Smear                  0.05 eV
+DOS.NumberOfPoints         500
+
+ProjectedDensityOfStates    true
+%block ProjectedDensityOfStates
+ -12.2500  3.2500  0.05  2000  eV
+%endblock ProjectedDensityOfStates
+
+
+#-----------------------------
+# Optical
+#-----------------------------
+OpticalCalculation             true
+Optical.EnergyMinimum          0.0 eV
+Optical.EnergyMaximum          10.0 eV
+Optical.NumberOfEnergyPoints   500
+Optical.ImagThreshold          1e-4
+Optical.Broaden                0.1 eV
+WriteOpticalFiles              true
+
+%block Optical.Mesh
+  1  1  1
+%endblock Optical.Mesh
+
+Optical.OffsetMesh             false
+
+%block Optical.Vector
+  1.0  0.0  0.0
+  0.0  1.0  0.0
+  0.0  0.0  1.0
+%endblock Optical.Vector
+
+
+#-----------------------------
+# Geometry optimization
+#-----------------------------
+MD.TypeOfRun        cg
+MD.NumCGsteps       500
+MD.MaxForceTol      0.004 eV/Ang
+MD.MaxCGDispl       0.05 Bohr
+
+UseSaveData         true
+DM.UseSaveDM        true
+MD.UseSaveCG        true
+MD.UseSaveXV        true
+
+WriteMDXmol         true
+SaveRho             true
+SaveElectrostaticPotential  true
+
+
+#-----------------------------
+# Coordinates
+#-----------------------------
+AtomicCoordinatesFormat   Fractional
+
+WriteBands          true
+BandLinesScale      pi/a
+%block BandLines
+  1  0.0  0.0  0.0  Γ
+  2  0.5  0.0  0.0  X
+%endblock BandLines
+
+
+
+
+AtomicCoordinatesFormat Fractional      #unidades que tendra el bloque de coordenadas
+%block AtomicCoordinatesAndAtomicSpecies
+0.56563	0.2657	0.51343	2
+0.69444	0.26569	0.51338	2
+0.63006	0.26566	0.51289	2
+0.43683	0.39457	0.5134	2
+0.37239	0.45894	0.51338	2
+0.43678	0.52333	0.51258	2
+0.43678	0.45897	0.51261	2
+0.37235	0.52337	0.51286	2
+0.39393	0.41604	0.55512	3
+0.39389	0.48045	0.55431	3
+0.50126	0.33013	0.51344	2
+0.56563	0.39451	0.51244	2
+0.56566	0.33008	0.51264	2
+0.50124	0.39454	0.51259	2
+0.45835	0.35166	0.55508	3
+0.52273	0.28724	0.55515	3
+0.52276	0.35165	0.55426	3
+0.63002	0.33008	0.51264	2
+0.69438	0.39456	0.51331	2
+0.69438	0.33013	0.51331	2
+0.62999	0.39454	0.51249	2
+0.58713	0.2872	0.55436	3
+0.5871	0.35159	0.55389	3
+0.65144	0.2872	0.55432	3
+0.65136	0.35165	0.55417	3
+0.50121	0.45893	0.5124	2
+0.56566	0.52333	0.51255	2
+0.56563	0.45893	0.51235	4
+0.50124	0.52329	0.51247	2
+0.45835	0.41607	0.55424	3
+0.45829	0.4804	0.55388	3
+0.5227	0.41601	0.55385	3
+0.52271	0.48036	0.55382	3
+0.63002	0.45897	0.51254	2
+0.69445	0.45893	0.51335	2
+0.63006	0.52336	0.51283	2
+0.58706	0.41601	0.55381	3
+0.58709	0.48039	0.55382	3
+0.65136	0.41607	0.55414	3
+0.65145	0.48043	0.55424	3
+0.71581	0.28724	0.55507	3
+0.71577	0.35166	0.55495	3
+0.7158	0.41603	0.55503	3
+0.3724	0.58775	0.51339	2
+0.43683	0.58769	0.51333	2
+0.39389	0.54476	0.5543	3
+0.39394	0.60911	0.55508	3
+0.50126	0.58769	0.51335	2
+0.56563	0.58775	0.51339	2
+0.45834	0.54467	0.55419	3
+0.45836	0.60907	0.55498	3
+0.52277	0.54467	0.55417	3
+0.52273	0.6091	0.55511	3
+0.58714	0.54475	0.55428	3
+0.57827	0.24049	0.53794	1
+0.5656	0.26561	0.44048	1
+0.707	0.24049	0.53788	1
+0.69456	0.26561	0.44044	1
+0.63008	0.26561	0.43993	1
+0.64267	0.24044	0.53732	1
+0.43672	0.39451	0.44048	1
+0.34718	0.4716	0.53786	1
+0.37231	0.45891	0.44044	1
+0.43671	0.52342	0.43965	1
+0.43671	0.45895	0.43968	1
+0.37231	0.52338	0.43991	1
+0.34714	0.53598	0.53731	1
+0.37697	0.39876	0.52344	1
+0.39423	0.41619	0.65369	1
+0.39405	0.48047	0.65286	1
+0.50123	0.33003	0.44053	1
+0.56562	0.39448	0.43951	1
+0.56566	0.33001	0.43972	1
+0.50119	0.3945	0.43966	1
+0.44122	0.33453	0.52364	1
+0.4586	0.35191	0.65357	1
+0.50548	0.27025	0.52351	1
+0.52289	0.28754	0.6537	1
+0.52288	0.3518	0.6528	1
+0.6301	0.33002	0.4397	1
+0.69453	0.3945	0.44037	1
+0.69453	0.33002	0.4404	1
+0.63006	0.3945	0.43957	1
+0.58716	0.28735	0.65285	1
+0.58708	0.35163	0.6524	1
+0.65124	0.28735	0.65286	1
+0.65113	0.35181	0.65269	1
+0.50121	0.45895	0.43948	1
+0.56564	0.5234	0.43962	1
+0.56563	0.45893	0.43941	1
+0.50121	0.52335	0.43955	1
+0.45849	0.41618	0.65281	1
+0.45835	0.48037	0.65242	1
+0.52274	0.41601	0.65244	1
+0.52269	0.48037	0.65239	1
+0.63009	0.45896	0.4396	1
+0.69456	0.45888	0.4404	1
+0.70702	0.47156	0.53791	1
+0.64267	0.53595	0.53729	1
+0.63009	0.52338	0.43989	1
+0.58706	0.41602	0.65236	1
+0.58707	0.48037	0.65235	1
+0.65112	0.41615	0.65266	1
+0.65126	0.48048	0.65278	1
+0.75004	0.27028	0.52341	1
+0.71535	0.28754	0.6536	1
+0.75003	0.33448	0.52348	1
+0.71527	0.35191	0.6535	1
+0.75002	0.3988	0.52332	1
+0.71538	0.41619	0.65356	1
+0.3472	0.60032	0.53793	1
+0.37232	0.58788	0.44044	1
+0.43672	0.58785	0.44039	1
+0.39402	0.54458	0.65283	1
+0.3942	0.6087	0.65362	1
+0.37693	0.64334	0.52335	1
+0.50119	0.58786	0.44042	1
+0.5656	0.58788	0.44044	1
+0.57828	0.60031	0.53792	1
+0.45849	0.54443	0.65274	1
+0.45861	0.60858	0.65348	1
+0.44122	0.64332	0.5235	1
+0.52287	0.54441	0.65275	1
+0.52289	0.60868	0.65364	1
+0.5055	0.64333	0.52334	1
+0.58715	0.54458	0.65284	1
+
+
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+
+Denchar.TypeOfRun           3D 
+Denchar.PlotCharge         .true.
+Denchar.PlotWaveFunctions  .true.
+Denchar.CoorUnits      Ang            # Format for coordinate of the points
+                                       #Bohr
+                                       #Ang
+Denchar.DensityUnits   Ele/Ang**3     # Units of Charge Density
+                                       #Ele/bohr**3
+                                       #Ele/Ang**3
+                                       #Ele/UnitCell
+Denchar.MinX             0  Ang   # Minimum coord of the window in X-dir
+Denchar.MaxX            50.0  Ang   # Maximum coord of the window in X-dir
+Denchar.MinY             0  Ang   # Minimum coord of the window in Y-dir
+Denchar.MaxY            50.0  Ang   # Maximum coord of the window in Y-dir
+Denchar.MinZ             0  Ang   # Minimum coord of the window in Y-dir
+Denchar.MaxZ            10.0  Ang   # Maximum coord of the window in Y-dir
+Denchar.NumberPointsX    40         # Number of points in X-axis
+Denchar.NumberPointsY    40         # Number of points in Y-axis
+Denchar.NumberPointsZ    40
+Denchar.PlaneGeneration  NormalVector      # Option to generate the plane
+                                              #NormalVector
+                                              #TwoLine
+                                              #ThreePoints
+                                              #ThreeAtomicIndices
+%block Denchar.CompNormalVector               # Indices of three atoms
+0.0000    0.0000    1.0000
+%endblock Denchar.CompNormalVector
+
+%block Denchar.PlaneOrigin                
+0.0000    0.0000    0.0000
+%endblock Denchar.PlaneOrigin
+
+%block Denchar.X-Axis                
+1.0000    0.0000    0.0000
+%endblock Denchar.X-Axis
+
+%block Denchar.y-Axis                
+-0.5000    0.8660    0.0000
+%endblock Denchar.y-Axis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
